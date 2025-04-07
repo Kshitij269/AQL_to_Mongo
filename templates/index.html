@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <title>AQL to MongoDB Interface</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        textarea { width: 100%; height: 150px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>AQL to MongoDB Query Tool</h1>
+    <form method="post" action="/">
+        <label for="aql">Enter AQL Query:</label><br>
+        <textarea name="aql" required>{{ aql or '' }}</textarea><br><br>
+        <button type="submit">Run Query</button>
+    </form>
+
+    {% if result %}
+        <h2>Result</h2>
+        <pre>{{ result | tojson(indent=2) }}</pre>
+    {% endif %}
+
+    {% if error %}
+        <div class="error"><strong>Error:</strong> {{ error }}</div>
+    {% endif %}
+</body>
+</html>

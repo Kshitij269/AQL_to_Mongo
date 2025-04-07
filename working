@@ -1,0 +1,10 @@
+SELECT
+    Composition/content/items/parts/at0000/parts/at0001/value/originalText/value
+FROM EHR e
+WHERE Composition/content/items/parts/at0000/parts/at0001/value/originalText/value = 'Headache';
+
+
+SELECT
+    Composition/content/items/parts/at0000/parts/at0001/value/originalText/value
+FROM EHR e
+WHERE Composition/content/items/parts/at0000/parts/at0001/value/originalText/value = 'Headache';
