@@ -53,12 +53,48 @@ class AqlListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by AqlParser#expression.
+    def enterExpression(self, ctx:AqlParser.ExpressionContext):
+        pass
+
+    # Exit a parse tree produced by AqlParser#expression.
+    def exitExpression(self, ctx:AqlParser.ExpressionContext):
+        pass
+
+
     # Enter a parse tree produced by AqlParser#condition.
     def enterCondition(self, ctx:AqlParser.ConditionContext):
         pass
 
     # Exit a parse tree produced by AqlParser#condition.
     def exitCondition(self, ctx:AqlParser.ConditionContext):
+        pass
+
+
+    # Enter a parse tree produced by AqlParser#comparator.
+    def enterComparator(self, ctx:AqlParser.ComparatorContext):
+        pass
+
+    # Exit a parse tree produced by AqlParser#comparator.
+    def exitComparator(self, ctx:AqlParser.ComparatorContext):
+        pass
+
+
+    # Enter a parse tree produced by AqlParser#logicalOp.
+    def enterLogicalOp(self, ctx:AqlParser.LogicalOpContext):
+        pass
+
+    # Exit a parse tree produced by AqlParser#logicalOp.
+    def exitLogicalOp(self, ctx:AqlParser.LogicalOpContext):
+        pass
+
+
+    # Enter a parse tree produced by AqlParser#value.
+    def enterValue(self, ctx:AqlParser.ValueContext):
+        pass
+
+    # Exit a parse tree produced by AqlParser#value.
+    def exitValue(self, ctx:AqlParser.ValueContext):
         pass
 
 

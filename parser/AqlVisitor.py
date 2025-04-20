@@ -34,8 +34,28 @@ class AqlVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by AqlParser#expression.
+    def visitExpression(self, ctx:AqlParser.ExpressionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by AqlParser#condition.
     def visitCondition(self, ctx:AqlParser.ConditionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by AqlParser#comparator.
+    def visitComparator(self, ctx:AqlParser.ComparatorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by AqlParser#logicalOp.
+    def visitLogicalOp(self, ctx:AqlParser.LogicalOpContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by AqlParser#value.
+    def visitValue(self, ctx:AqlParser.ValueContext):
         return self.visitChildren(ctx)
 
 
