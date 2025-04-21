@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017")
-db = client["ehr_db"]  # Use your actual database name from MongoDB
+db = client["ehr_db"]  # Your actual MongoDB database name
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -21,7 +21,7 @@ def index():
             if not aql:
                 error = "Missing AQL query input."
             else:
-                # Parse AQL to Mongo query structure
+                # Parse AQL to MongoDB structure
                 parsed = parse_aql(aql)
 
                 if not parsed or 'collection' not in parsed:
@@ -33,9 +33,13 @@ def index():
                     mongo_filter = parsed.get('filter', {})
                     projection = parsed.get('projection', {})
                     aliases = parsed.get('aliases', {})
+                    sort_clause = parsed.get('sort', [])
 
-                    # Run query
+                    # Run query with optional sort
                     cursor = collection.find(mongo_filter, projection)
+                    if sort_clause:
+                        cursor = cursor.sort(sort_clause)
+
                     results = []
                     for doc in cursor:
                         doc['_id'] = str(doc['_id'])
@@ -47,7 +51,8 @@ def index():
                         "mongo_query": {
                             "collection": collection_name,
                             "filter": mongo_filter,
-                            "projection": projection
+                            "projection": projection,
+                            "sort": sort_clause
                         }
                     }
 

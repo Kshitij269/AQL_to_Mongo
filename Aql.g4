@@ -1,7 +1,7 @@
 grammar Aql;
 
 query
-    : selectClause fromClause whereClause? SEMI
+    : selectClause fromClause whereClause? orderByClause? SEMI
     ;
 
 selectClause
@@ -13,7 +13,7 @@ selectExpr
     ;
 
 fromClause
-    : FROM path ID (CONTAINS path ID (LBRACK ID RBRACK)?)*
+    : FROM path ID (CONTAINS path ID (LBRACK ID RBRACK)? )*
     ;
 
 whereClause
@@ -21,11 +21,14 @@ whereClause
     ;
 
 expression
-    : condition (logicalOp condition)*
+    : NOT? simpleExpr (logicalOp NOT? simpleExpr)*
     ;
 
-condition
-    : path comparator value
+simpleExpr
+    : LPAREN expression RPAREN
+    | path comparator value
+    | path MATCHES STRING
+    | path EXISTS
     ;
 
 comparator
@@ -40,6 +43,14 @@ comparator
 logicalOp
     : AND
     | OR
+    ;
+
+orderByClause
+    : ORDER BY orderField (COMMA orderField)*
+    ;
+
+orderField
+    : path (ASC | DESC)?
     ;
 
 value
@@ -64,6 +75,13 @@ WHERE       : 'WHERE';
 AS          : 'AS';
 AND         : 'AND';
 OR          : 'OR';
+NOT         : 'NOT';
+MATCHES     : 'MATCHES';
+EXISTS      : 'EXISTS';
+ORDER       : 'ORDER';
+BY          : 'BY';
+ASC         : 'ASC';
+DESC        : 'DESC';
 
 // Operators
 EQUALS      : '=';
@@ -79,6 +97,8 @@ COMMA       : ',';
 SLASH       : '/';
 LBRACK      : '[';
 RBRACK      : ']';
+LPAREN      : '(';
+RPAREN      : ')';
 
 // Types
 ID          : [a-zA-Z_][a-zA-Z0-9_]* ;

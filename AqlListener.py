@@ -62,12 +62,12 @@ class AqlListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by AqlParser#condition.
-    def enterCondition(self, ctx:AqlParser.ConditionContext):
+    # Enter a parse tree produced by AqlParser#simpleExpr.
+    def enterSimpleExpr(self, ctx:AqlParser.SimpleExprContext):
         pass
 
-    # Exit a parse tree produced by AqlParser#condition.
-    def exitCondition(self, ctx:AqlParser.ConditionContext):
+    # Exit a parse tree produced by AqlParser#simpleExpr.
+    def exitSimpleExpr(self, ctx:AqlParser.SimpleExprContext):
         pass
 
 
@@ -86,6 +86,24 @@ class AqlListener(ParseTreeListener):
 
     # Exit a parse tree produced by AqlParser#logicalOp.
     def exitLogicalOp(self, ctx:AqlParser.LogicalOpContext):
+        pass
+
+
+    # Enter a parse tree produced by AqlParser#orderByClause.
+    def enterOrderByClause(self, ctx:AqlParser.OrderByClauseContext):
+        pass
+
+    # Exit a parse tree produced by AqlParser#orderByClause.
+    def exitOrderByClause(self, ctx:AqlParser.OrderByClauseContext):
+        pass
+
+
+    # Enter a parse tree produced by AqlParser#orderField.
+    def enterOrderField(self, ctx:AqlParser.OrderFieldContext):
+        pass
+
+    # Exit a parse tree produced by AqlParser#orderField.
+    def exitOrderField(self, ctx:AqlParser.OrderFieldContext):
         pass
 
 

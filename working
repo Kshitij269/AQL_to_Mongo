@@ -24,3 +24,7 @@ SELECT
     subjectOfCare
 FROM EHR e
 WHERE Composition/content/items/parts/at0000/parts/at0001/value/originalText/value = 'Leader.' AND context/setting/defining_code/code_string = 'emergency';
+
+SELECT subjectOfCare FROM EHR e
+WHERE Composition/content/items/parts/at0000/parts/at0002/value/magnitude >= 120 
+ORDER BY Composition/content/items/parts/at0002 ASC;
